@@ -1,0 +1,939 @@
+/* Global settings */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #8e44ad, #3498db); /* Gradient background */
+    color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    padding-bottom: 80px; /* Space for footer */
+    box-sizing: border-box; /* Ensure padding and margin are counted correctly */
+}
+
+/* Navbar styles */
+.navbar {
+    background: linear-gradient(135deg, #222222, #444444);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for background and shadow */
+}
+
+/* Navbar colors when scrolled */
+.navbar.scrolled {
+    background: linear-gradient(135deg, #3498db, #8e44ad); /* Gradient changes on scroll */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow on scroll */
+}
+
+/* Navbar Branding */
+.navbar-brand {
+    font-weight: bold;
+    color: #f80606 !important;
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+/* Navbar links */
+.navbar-nav .nav-link {
+    color: #fd0404 !important; /* Warna teks default */
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-transform: uppercase; /* Menambahkan huruf kapital */
+    letter-spacing: 1px; /* Memberikan spasi antar huruf */
+    position: relative;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* Navbar links hover */
+.navbar-nav .nav-link:hover {
+    color: #f5f5f5 !important; /* Warna teks saat hover */
+    background-color: #fd0404; /* Latar belakang merah cerah */
+    border-radius: 30px; /* Memberikan border-radius yang lebih halus */
+    transform: scale(1.05); /* Sedikit perbesaran saat hover */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Menambahkan bayangan halus */
+}
+
+/* Menambahkan efek garis bawah animasi */
+.navbar-nav .nav-link:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #f5f5f5;
+    transition: width 0.3s ease, left 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.navbar-nav .nav-link:hover:after {
+    width: 100%;
+    left: 0;
+}
+
+/* Efek transisi smooth untuk perubahan warna dan hover */
+.navbar-nav .nav-link {
+    transition: all 0.3s ease;
+}
+
+/* Menambah efek saat navbar berada dalam kondisi scroll */
+.navbar.scrolled .navbar-nav .nav-link {
+    color: #f5f5f5 !important;
+    background-color: transparent;
+}
+
+
+/* Footer Styles */
+footer {
+    background: linear-gradient(135deg, #333333, #555555);
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    z-index: 1000;
+    transition: background 0.3s ease; /* Smooth transition for footer */
+}
+
+/* Footer colors when scrolled */
+footer.scrolled {
+    background: linear-gradient(135deg, #3498db, #8e44ad); /* Gradient changes on scroll */
+}
+
+/* Container and Content */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    margin-top: 80px; /* Space from navbar */
+}
+
+/* Card Styles */
+.service-card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden; /* Keep images within the card's boundary */
+}
+
+.service-card:hover {
+    transform: translateY(-10px); /* Slight movement on hover */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    position: relative;
+}
+
+/* Adding overlay effect to images */
+.service-card .card-img-top:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3); /* Dark overlay */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1; /* Position it behind the image */
+}
+
+/* Zoom effect for images */
+.service-card:hover .card-img-top {
+    transform: scale(1.05); /* Zoom in image on hover */
+}
+
+.service-card:hover .card-img-top:before {
+    opacity: 1; /* Make overlay visible on hover */
+}
+
+/* Card body */
+.card-body {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 0 0 10px 10px;
+    padding: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.card-body:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Subtle background change on hover */
+}
+
+.card-title {
+    font-size: 1.5rem;
+    color: #0a0a0a;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #0a0a0a;
+    line-height: 1.5;
+}
+
+/* Services List Responsive */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.col-md-4 {
+    margin-bottom: 30px;
+    padding: 0 15px;
+    width: 100%;
+    max-width: 380px;
+}
+
+@media (min-width: 768px) {
+    .col-md-4 {
+        width: 48%;
+    }
+}
+
+@media (min-width: 992px) {
+    .col-md-4 {
+        width: 23%;
+    }
+}
+
+/* Button Styles */
+.btn-primary {
+    background-color: #fd0404;
+    color: #fff;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border-radius: 25px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-transform: uppercase;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover {
+    background-color: #c0392b;
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover effects for services */
+.service-card:hover .card-title {
+    color: #fd0404; /* Change title color on hover */
+}
+
+.service-card:hover .card-text {
+    color: #ffffff;
+}
+
+/* Mobile Responsiveness */
+@media screen and (max-width: 768px) {
+    /* Navbar adjustments */
+    .navbar-nav .nav-link {
+        font-size: 1rem; /* Smaller font for mobile */
+        padding: 8px 12px;
+    }
+
+    /* Button adjustments */
+    .btn {
+        font-size: 1rem;
+        padding: 12px 20px;
+    }
+
+    /* Card Styles */
+    .service-card {
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        overflow: hidden; /* Keep images within the card's boundary */
+    }
+
+    .service-card:hover {
+        transform: translateY(-10px); /* Slight movement on hover */
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-img-top {
+        height: 200px;
+        object-fit: cover;
+        border-radius: 10px;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        position: relative;
+    }
+
+    /* Adding overlay effect to images */
+    .service-card .card-img-top:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.3); /* Dark overlay */
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: -1; /* Position it behind the image */
+    }
+
+    /* Zoom effect for images */
+    .service-card:hover .card-img-top {
+        transform: scale(1.05); /* Zoom in image on hover */
+    }
+
+    .service-card:hover .card-img-top:before {
+        opacity: 1; /* Make overlay visible on hover */
+    }
+
+    /* Card body */
+    .card-body {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 0 0 10px 10px;
+        padding: 20px;
+        transition: background-color 0.3s ease;
+    }
+
+    .card-body:hover {
+        background-color: rgba(255, 255, 255, 0.2); /* Subtle background change on hover */
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+        color: #f5f5f5;
+        margin-bottom: 15px;
+        font-weight: bold;
+    }
+
+    .card-text {
+        font-size: 1rem;
+        color: #f5f5f5;
+        line-height: 1.5;
+    }
+}
+
+/* Global Body Settings (Mobile Padding) */
+body {
+    padding-bottom: 100px; /* Extra space for footer */
+}
+
+/* Adjust top margin for content on mobile */
+.container, .service-card {
+    margin-top: 100px; /* Adjust for navbar height */
+}
+
+/* Hover effect for social icons */
+.social-icon {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile Navbar toggle */
+.navbar-toggler-icon {
+    background-color: #fd0404; /* Change hamburger icon color */
+}
+
+/* Home Page Section */
+.home-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+    position: relative;/* Pastikan elemen ini mengambil seluruh lebar layar */
+}
+
+
+/* Profile Image Section */
+.profile-image-wrapper {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease-in-out;
+    position: absolute;
+    top: 20px; /* Atur posisi foto di bagian atas */
+}
+
+.profile-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.profile-image-wrapper:hover {
+    transform: scale(1.1); /* Efek zoom saat hover pada foto */
+}
+
+/* Title and Description Section */
+.text-left {
+    max-width: 800px;
+    margin: 0 auto;
+    z-index: 1; /* Pastikan konten tetap di atas background */
+    position: relative;
+}
+
+.text-left h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.5); /* Efek bayangan pada teks */
+}
+
+.text-left p {
+    font-size: 1.5rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* Button Styles */
+.btn-primary {
+    background-color: #fd0404;
+    color: #fff;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    border-radius: 25px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+    z-index: 1; /* Pastikan tombol di atas background */
+}
+
+.btn-primary:hover {
+    background-color: #c0392b;
+    transform: scale(1.05); /* Efek hover untuk tombol */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .home-page {
+        background-size: cover; /* Pastikan gambar tetap penuh pada perangkat mobile */
+        background-position: center center;
+    }
+
+    .text-left h1 {
+        font-size: 2rem; /* Ukuran font lebih kecil di mobile */
+    }
+
+    .text-left p {
+        font-size: 1rem;
+    }
+
+    .btn-primary {
+        font-size: 1rem;
+        padding: 12px 25px;
+    }
+}
+
+.about-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 50px 20px;
+    background: #f4f4f4;
+    min-height: 100vh;
+}
+
+.about-profile {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 40px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-profile:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.profile-img:hover {
+    transform: scale(1.1); /* Zoom effect for profile image */
+}
+
+.about-profile h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.about-profile p {
+    font-size: 1.2rem;
+    color: #555;
+    line-height: 1.6;
+    font-style: italic;
+}
+
+.experience-section {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.experience-section p {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.experience-list {
+    list-style: none;
+    padding-left: 0;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.experience-list li {
+    margin: 10px 0;
+    padding-left: 20px;
+    position: relative;
+}
+
+.experience-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #fd0404; /* Icon color */
+    font-size: 1.5rem;
+    top: 0;
+}
+
+.services-button {
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: #fd0404;
+    color: #fff;
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #c0392b;
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .about-profile, .experience-section {
+        padding: 20px;
+    }
+
+    .profile-img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .about-profile h1 {
+        font-size: 2rem;
+    }
+
+    .about-profile p {
+        font-size: 1rem;
+    }
+
+    .experience-section p {
+        font-size: 1.2rem;
+    }
+
+    .btn-primary {
+        font-size: 1rem;
+        padding: 12px 25px;
+    }
+}
+/* Global Contact Page Styles */
+.contact-page {
+    background-color: #4e4abe;
+    padding: 50px 20px;
+    min-height: 100vh;
+    color: #090909;
+}
+
+/* Section Header */
+.section-header h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.section-header p {
+    font-size: 1.2rem;
+    color: #030303;
+}
+
+/* Contact Cards */
+.contact-card {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+.contact-card h4 {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #444;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.contact-card p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 0;
+}
+
+.contact-card a {
+    color: #fd0404;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.contact-card a:hover {
+    color: #c0392b;
+}
+
+/* Social Media Links */
+.social-links {
+    margin-top: 40px;
+}
+
+.social-links .lead {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-icon {
+    font-size: 2rem;
+    color: #555;
+    background-color: #050505;
+    padding: 15px;
+    border-radius: 50%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+    display: inline-block;
+    -webkit-transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+    -moz-transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+    -ms-transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+    -o-transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    color: #fd0404; /* Change icon color on hover */
+}
+
+.social-icon.github:hover {
+    background-color: #333;
+}
+
+.social-icon.instagram:hover {
+    background-color: #e1306c;
+}
+
+.social-icon.facebook:hover {
+    background-color: #3b5998;
+}
+
+/* Media Query for Mobile */
+@media (max-width: 768px) {
+    .section-header h1 {
+        font-size: 2rem;
+    }
+
+    .section-header p {
+        font-size: 1rem;
+    }
+
+    .contact-card {
+        padding: 20px;
+    }
+
+    .social-icon {
+        font-size: 1.8rem;
+        padding: 12px;
+    }
+}
+
+/* Artikel Blog */
+.article {
+    background-color: #f5d4d4;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    margin-bottom: 50px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    perspective: 1500px; /* Memberikan perspektif 3D */
+}
+
+/* Efek Hover pada Artikel */
+.article:hover {
+    transform: rotateY(10deg) rotateX(5deg); /* Efek rotasi 3D saat hover */
+    box-shadow: 0 30px 50px rgba(0, 0, 0, 0.2); /* Bayangan lebih besar untuk efek pop */
+}
+
+/* Judul Artikel */
+.article h2 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+    line-height: 1.3;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: transparent;
+    transition: all 0.3s ease;
+}
+
+/* Efek Hover pada Judul */
+.article h2:hover {
+    color: #090909;
+    background: transparent;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Metadata Artikel */
+.article p strong {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.article p em {
+    color: #555;
+    font-size: 1rem;
+}
+
+/* Gambar Artikel */
+.article img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+
+/* Efek Hover pada Gambar */
+.article img:hover {
+    transform: scale(1.05); /* Efek zoom pada gambar saat hover */
+}
+
+/* Sub-Judul Artikel */
+.article h3 {
+    font-size: 2rem;
+    color: #333;
+    margin-top: 30px;
+    font-weight: 600;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    transition: transform 0.3s ease;
+}
+
+/* Animasi pada Sub-Judul */
+.article h3:hover {
+    color: #007bff;
+    transform: translateX(5px); /* Efek geser horizontal */
+}
+
+/* Paragraf Artikel */
+.article p {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 20px;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+/* Efek Animasi pada Paragraf */
+.article p:hover {
+    transform: translateY(-5px); /* Efek geser vertikal pada paragraf */
+}
+
+/* Daftar (List) */
+.article ul {
+    list-style-type: square;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.article ul li {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    transition: color 0.3s ease;
+}
+
+/* Efek Hover pada List Item */
+.article ul li:hover {
+    color: #007bff;
+}
+
+/* Tombol CTA */
+.article .btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 30px;
+    font-size: 1.125rem;
+    border: none;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 30px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Efek Hover pada Tombol */
+.article .btn-primary:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px); /* Efek angkat tombol saat hover */
+}
+
+/* Responsif untuk Mobile */
+@media (max-width: 767px) {
+    .article {
+        padding: 20px;
+    }
+
+    .article h2 {
+        font-size: 2rem;
+    }
+
+    .article h3 {
+        font-size: 1.5rem;
+    }
+
+    .article p {
+        font-size: 1rem;
+    }
+
+    .article ul {
+        margin-left: 15px;
+    }
+}
+/* Styling untuk Judul Blog */
+h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+    padding: 20px;
+    background-color: #f0f8ff;
+    border-radius: 50px; /* Membuat bentuk gelembung */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1), 0 8px 25px rgba(0, 0, 0, 0.15); /* Efek bayangan untuk kesan 3D */
+    transition: all 0.3s ease-in-out;
+}
+/* Styling untuk Judul Blog */
+h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+    padding: 20px;
+    background-color: #f0f8ff;
+    border-radius: 50px; /* Membuat bentuk gelembung */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1), 0 8px 25px rgba(0, 0, 0, 0.15); /* Efek bayangan untuk kesan 3D */
+    transition: all 0.3s ease-in-out;
+}
+
+/* Efek Hover pada Judul */
+h1:hover {
+    transform: scale(1.05); /* Efek zoom saat hover */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2), 0 12px 45px rgba(0, 0, 0, 0.25); /* Bayangan lebih besar untuk efek pop */
+}
+
+/* Styling untuk Deskripsi Blog */
+.blog-p {
+    font-size: 1.2rem;
+    color: #555;
+    text-align: center;
+    line-height: 1.6;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    padding: 20px;
+    background-color: #ffebcd;
+    border-radius: 25px; /* Membuat bentuk gelembung */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1), 0 6px 18px rgba(0, 0, 0, 0.15); /* Efek bayangan pada bubble */
+    transition: all 0.3s ease-in-out;
+}
+
+/* Efek Hover pada Deskripsi */
+.blog-p:hover {
+    transform: scale(1.03); /* Efek zoom pada deskripsi */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 10px 25px rgba(0, 0, 0, 0.25); /* Bayangan lebih besar untuk efek pop */
+}
+
